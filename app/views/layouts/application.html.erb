@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
     <title><%= content_for(:title) || "Capuzz" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,21 +8,56 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <%# Tailwind CSS CDN %>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <%# Google Fonts (Opcional, mas recomendado para o estilo) %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Teko:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+      /* Aplicando as fontes customizadas */
+      .font-teko { font-family: 'Teko', sans-serif; }
+      .font-roboto-condensed { font-family: 'Roboto Condensed', sans-serif; }
+    </style>
 
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%= yield :head %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-zinc-900 text-gray-200 font-roboto-condensed">
+    
+    <header class="fixed top-0 left-0 w-full bg-zinc-950/80 backdrop-blur-sm border-b border-red-600/30 z-50">
+      <nav class="container mx-auto flex justify-between items-center p-4">
+        <a href="/" class="font-teko text-3xl font-bold text-red-600 tracking-wider uppercase">
+          Capuzz
+        </a>
+
+        <div class="flex items-center space-x-6">
+          <a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-200">Feed</a>
+          <a href="#" class="text-gray-300 hover:text-red-500 transition-colors duration-200">Missões</a>
+          
+          <button class="w-10 h-10 bg-zinc-800 rounded-full border-2 border-zinc-700 hover:border-red-600 focus:outline-none focus:border-red-500 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-24 pb-12">
+      <div class="container mx-auto px-4">
+        <%= yield %>
+      </div>
+    </main>
+
   </body>
 </html>

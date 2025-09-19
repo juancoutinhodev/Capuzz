@@ -1,22 +1,21 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
+<div id="<%= dom_id post %>" class="max-w-2xl mx-auto my-8 bg-white p-6 rounded-lg shadow-md border border-gray-200">
+  <p class="mb-4">
+    <strong class="font-semibold text-gray-600">Title:</strong>
+    <span class="text-gray-900"><%= post.title %></span>
+  </p>
+
+  <p class="mb-4">
+    <strong class="font-semibold text-gray-600">Text:</strong>
+    <span class="text-gray-900"><%= post.text %></span>
+  </p>
+
+  <p class="mb-4">
+    <strong class="font-semibold text-gray-600">Author:</strong>
+    <span class="text-gray-900"><%= post.author %></span>
   </p>
 
   <p>
-    <strong>Text:</strong>
-    <%= post.text %>
+    <strong class="font-semibold text-gray-600">Body:</strong>
+    <span class="text-gray-900"><%= post.body %></span>
   </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= post.author %>
-  </p>
-
-  <p>
-    <strong>Body:</strong>
-    <%= post.body %>
-  </p>
-
 </div>

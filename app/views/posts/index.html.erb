@@ -1,16 +1,36 @@
-<p style="color: green"><%= notice %></p>
+<%# app/views/posts/index.html.erb %>
 
 <% content_for :title, "Posts" %>
 
-<h1>Posts</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+<div class="header">
+  <h1>Feed</h1>
+  <%= link_to "Novo Post", new_post_path, class: "new-post-btn" %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<div id="posts" class="posts-container">
+  <% @posts.each do |post| %>
+    <div class="post-card" id="<%= dom_id post %>">
+      
+      <%# --- Cabeçalho do Card (Informações do Usuário) --- %>
+      <div class="post-header">
+        <img src="https://i.pravatar.cc/40?u=<%= post.id %>" alt="Avatar" class="post-avatar">
+        <div class="post-user-info">
+          <span class="post-username">Usuário <%= post.id %></span>
+          <span class="post-timestamp">Publicado há 2 horas</span>
+        </div>
+      </div>
+
+      <%# --- Conteúdo do Post (Renderiza a partial _post.html.erb) --- %>
+      <div class="post-body">
+        <%= render post %>
+      </div>
+
+      <%# --- Ações do Post --- %>
+      <div class="post-actions">
+        <%= link_to "Ver post", post, class: "action-link" %>
+        <%# Você pode adicionar outros ícones/links aqui (curtir, comentar, etc.) %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
